@@ -11,13 +11,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, testId }) => {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
-      data-testid={testId}
-    >
-      <div
-        className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 my-8 overflow-y-auto max-h-[90vh] p-6"
-      >
+ 
+<div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+      data-testid={testId}
+    >
+      <div
+        className="relative bg-white rounded-lg shadow-lg max-w-lg w-full mx-4 my-8 overflow-y-auto max-h-[90vh] p-6"
+      >
+
         <button
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
           onClick={onClose}

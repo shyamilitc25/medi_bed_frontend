@@ -1,3 +1,5 @@
+
+
 // ---------------mandatory intefaces---------------------------------------
 export interface IFormInput {
   name: string;
@@ -31,3 +33,13 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 }
 // --------------------------------------------------------------------------
 
+
+export interface IResource{
+  _id?:string,
+  name:string;
+  category:string;
+  totalQuantity:number,
+  availableQuantity:number;
+  location:string;
+  status:"operational"|"faulty" | "maintenance"
+}
