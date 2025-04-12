@@ -1,6 +1,9 @@
+import Layout from "../components/Layout/Layout"
 const Dashboard=()=>{
     return(
-        <div>Dashboar</div>
+       <Layout pageTitle="Dashboard">
+        <h1>dashboard</h1>
+       </Layout>
     )
 }
 export default Dashboard
