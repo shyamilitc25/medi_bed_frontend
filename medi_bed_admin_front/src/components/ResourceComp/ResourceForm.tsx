@@ -9,6 +9,7 @@ import { useState } from "react";
 import LoadingSpinner from "../Spinner";
 
 import { toast } from "react-toastify";
+import FormSelect from "../FormFields/FormSelector";
 
 const AdminFormModal = ({
   isOpen,
@@ -122,7 +123,6 @@ const AdminFormModal = ({
               value={values.location}
               onChange={handleChange}
             />
-
             <div className="flex justify-end space-x-4">
               <Button type="submit" variant="primary" disabled={loading}>
                 {loading ? <LoadingSpinner /> : resource ? "Update" : "Submit"}
