@@ -4,6 +4,7 @@ import Pagination from "../PaginationComp";
 import { IResource } from "../../interface/interface";
 import { deleteResource, getResources } from "../../services/resourceService";
 import { toast } from "react-toastify";
+import AdminFormModal from "./ResourceForm";
 
 const ResourceList: React.FC = () => {
   const userColumns: (keyof IResource)[] = [
@@ -18,7 +19,16 @@ const ResourceList: React.FC = () => {
   const [data, setData] = useState<IResource[]>([]);
   const [totalPages, seTotalPages] = useState(0);
   const itemsPerPage = 5;
-
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State for modal
+  const [selectedResource, setSelectedResource] = useState<IResource | null>(
+    null
+  ); // State for selected resource
+  const openModal = () => {
+    setIsEditModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsEditModalOpen(false);
+  };
   const fetchData = async () => {
     try {
       const response = await getResources(currentPage, itemsPerPage);
@@ -32,7 +42,13 @@ const ResourceList: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
-  const onEditHandler = (id: string) => {};
+  const onEditHandler = (id: string) => {
+    const resource = data.find((item) => item._id === id); // Find the resource by ID
+    if (resource) {
+      setSelectedResource(resource); // Set the selected resource
+      setIsEditModalOpen(true); // Open the modal
+    }
+  };
   const onDeleteHandler = async (id: string) => {
     try {
       const resp = await deleteResource(id);
@@ -65,6 +81,8 @@ const ResourceList: React.FC = () => {
         onPageChange={setCurrentPage}
         loading={false}
       />
+      <AdminFormModal isOpen={isEditModalOpen} onClose={closeModal} title={"Edit Resources"} resource={selectedResource}/>
+
     </>
   );
 };

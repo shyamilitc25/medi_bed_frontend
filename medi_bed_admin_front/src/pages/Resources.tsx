@@ -17,7 +17,7 @@ const Resources = () => {
         Add Resources
       </Button>
       {/* Add Resources popup */}
-      <AdminFormModal isOpen={isOpen} onClose={closeModal} title={"Add Resources"}/>
+      <AdminFormModal isOpen={isOpen} onClose={closeModal} title={"Add Resources"} />
         <ResourceList/>
        
     </Layout>

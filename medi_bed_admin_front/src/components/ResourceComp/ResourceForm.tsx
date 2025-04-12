@@ -1,26 +1,30 @@
 import Modal from "../ModalComp";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import FormInput from "../FormFields/FormInput"; // Update path based on your file structure
+import FormInput from "../FormFields/FormInput";
 import Button from "../FormFields/ButtonComp";
 import { IResource } from "../../interface/interface";
-import { createResource } from "../../services/resourceService";
+import { createResource, updateResource } from "../../services/resourceService";
 import { useState } from "react";
 import LoadingSpinner from "../Spinner";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const AdminFormModal = ({
   isOpen,
   onClose,
   title,
+  resource,
 }: {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  resource?: IResource | null
 }) => {
-    const [loading,setLoading]=useState(false);
-  const initialValues: IResource = {
+  const [loading, setLoading] = useState(false);
+
+  const initialValues: IResource = resource || {
+    // If resource is provided, use it, otherwise use default values
     name: "",
     category: "",
     totalQuantity: 0,
@@ -31,21 +35,32 @@ const AdminFormModal = ({
 
   const handleSubmit = async (values: IResource) => {
     try {
-        setLoading(true);
+      setLoading(true);
       console.log("Form submitted", values);
-      const response = await createResource(values);
-      if (response.success) {
-        toast.success(response?.message)
-        // alert(response?.message);
+
+      let response;
+      if (resource) {
+        // If resource exists, update it
+        response = await updateResource(values);
+      } else {
+        // Otherwise, create a new resource
+        response = await createResource(values);
       }
+
+      if (response.success) {
+        toast.success(response?.message);
+      } else {
+        toast.error(response?.message || "Error occurred");
+      }
+
       console.log({ response });
     } catch (err) {
-      toast.error("oopsss!!! couldn't create entry")
+      toast.error("Oops! Something went wrong.");
       console.log(err);
+    } finally {
+      setLoading(false);
+      onClose();
     }
-    setLoading(false)
-    // return response
-     onClose();
   };
 
   return (
@@ -110,8 +125,7 @@ const AdminFormModal = ({
 
             <div className="flex justify-end space-x-4">
               <Button type="submit" variant="primary" disabled={loading}>
-
-                {loading? <LoadingSpinner/>:'Submit'}
+                {loading ? <LoadingSpinner /> : resource ? "Update" : "Submit"}
               </Button>
               <Button type="button" variant="danger" onClick={onClose}>
                 Close
