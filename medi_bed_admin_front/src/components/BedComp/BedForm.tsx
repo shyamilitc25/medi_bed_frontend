@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import FormInput from "../FormFields/FormInput"; // Update path based on your file structure
 import Button from "../FormFields/ButtonComp";
 import FormSelect from "../FormFields/FormSelector";
+import { createBed } from "../../services/resourceService";
+import { IBed } from "../../interface/interface";
 
 interface MyFormValues {
   name: string | number;
@@ -27,12 +29,18 @@ const AdminFormModal = ({
     ward: "",
     bedType: "",
     isOccupied: false,
-    name: "",
+    name: ""
   };
 
-  const handleSubmit = (values: MyFormValues) => {
-    console.log("Form submitted", values);
-    // onClose();
+  const handleSubmit = async (values: IBed) => {
+    try {
+      const response = await createBed(values);
+      console.log("Form submitted", response);
+      
+      onClose();
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   };
 
   return (
@@ -44,7 +52,7 @@ const AdminFormModal = ({
           bedNumber: Yup.string().required("bedNumber is required"),
           ward: Yup.string().required("ward is required"),
           bedType: Yup.string().required("bedType is required"),
-          isOccupied: Yup.string().required("isOccupied is required"),
+          // isOccupied: Yup.boolean().required("isOccupied is required"),
         })}
         onSubmit={handleSubmit}
       >
@@ -55,7 +63,7 @@ const AdminFormModal = ({
               labelName="bedNumber"
               placeHolder="Enter your bedNumber"
               type="text"
-              value={values.name}
+              value={values.bedNumber}
               onChange={handleChange}
             />
             <FormInput
@@ -63,7 +71,7 @@ const AdminFormModal = ({
               labelName="ward"
               placeHolder="Enter your ward"
               type="text"
-              value={values.name}
+              value={values.ward}
               onChange={handleChange}
             />
             <FormInput
@@ -71,18 +79,19 @@ const AdminFormModal = ({
               labelName="bedType"
               placeHolder="Enter your bedType"
               type="text"
-              value={values.name}
+              value={values.bedType}
               onChange={handleChange}
             />
             {/* <FormSelect
-              name={"isOccupied"}
-              labelName={"isOccupied"}
+              name="isOccupied"
+              labelName="Is Occupied"
               data={[
                 { value: true, label: "Yes" },
-                { value: false, label: "No" },
+                { value: false, label: "No" }
               ]}
+              value={values.isOccupied}
+              onChange={handleChange}
             /> */}
-
             <div className="flex justify-end space-x-4">
               <Button type="submit" variant="primary">
                 Submit
