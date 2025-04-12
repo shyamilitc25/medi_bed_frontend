@@ -1,0 +1,17 @@
+@import "tailwindcss"; 
+/* Hide scrollbar but allow scrolling */ 
+
+.scrollbar-hide::-webkit-scrollbar { 
+
+    display: none; 
+
+  } 
+  .scrollbar-hide { 
+
+    -webkit-overflow-scrolling: touch; /* For iOS devices */ 
+
+    scroll-behavior: smooth; /* For smooth scrolling */ 
+
+} 
+
+ 
