@@ -40,10 +40,11 @@ export interface IFormSelect {
   data: IFormSelectData[];
 }
 export interface IBed {
+  _id?: string;
   bedNumber:string,
   ward:string,
   bedType:string,
-  
+
 }
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger"| "confirm" | "success"
