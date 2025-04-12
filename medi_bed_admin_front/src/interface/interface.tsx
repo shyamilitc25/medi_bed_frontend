@@ -26,6 +26,17 @@ export interface ISidebarRoute {
   name: string;
   link: string;
 }
+export interface IFormSelectData {
+  _id: string;
+  name: string;
+  value : string;
+  label :string
+}
+export interface IFormSelect {
+  name: string;
+  labelName: string;
+  data: IFormSelectData[];
+}
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger"| "confirm" | "success"
 }
