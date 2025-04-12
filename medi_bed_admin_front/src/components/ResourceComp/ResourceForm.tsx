@@ -5,6 +5,8 @@ import FormInput from "../FormFields/FormInput"; // Update path based on your fi
 import Button from "../FormFields/ButtonComp";
 import { IResource } from "../../interface/interface";
 import { createResource } from "../../services/resourceService";
+import { useState } from "react";
+import LoadingSpinner from "../Spinner";
 const AdminFormModal = ({
   isOpen,
   onClose,
@@ -14,6 +16,7 @@ const AdminFormModal = ({
   onClose: () => void;
   title: string;
 }) => {
+    const [loading,setLoading]=useState(false);
   const initialValues: IResource = {
     name: "",
     category: "",
@@ -25,6 +28,7 @@ const AdminFormModal = ({
 
   const handleSubmit = async (values: IResource) => {
     try {
+        setLoading(true);
       console.log("Form submitted", values);
       const response = await createResource(values);
       if (response.success) {
@@ -34,6 +38,7 @@ const AdminFormModal = ({
     } catch (err) {
       console.log(err);
     }
+    setLoading(false)
     // return response
      onClose();
   };
@@ -99,8 +104,9 @@ const AdminFormModal = ({
             />
 
             <div className="flex justify-end space-x-4">
-              <Button type="submit" variant="primary">
-                Submit
+              <Button type="submit" variant="primary" disabled={loading}>
+
+                {loading? <LoadingSpinner/>:'Submit'}
               </Button>
               <Button type="button" variant="danger" onClick={onClose}>
                 Close
