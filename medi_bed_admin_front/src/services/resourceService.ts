@@ -6,7 +6,7 @@ export const createResource=async(formData:IResource)=>{
     return response.data
 }
 export const getResources=async(page:number,limit:number)=>{
-    const response=await axios.post(`${API_URL}/resource`,{
+    const response=await axios.get(`${API_URL}/resource`,{
         params:{
             page,limit
         }
