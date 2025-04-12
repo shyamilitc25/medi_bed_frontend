@@ -5,3 +5,11 @@ export const createResource=async(formData:IResource)=>{
     const response=await axios.post(`${API_URL}/resource`,formData);
     return response.data
 }
+export const getResources=async(page:number,limit:number)=>{
+    const response=await axios.post(`${API_URL}/resource`,{
+        params:{
+            page,limit
+        }
+    });
+    return response.data
+}
