@@ -7,10 +7,7 @@ export interface IFormInput {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string | number;
 }
-export interface IFormSelectData {
-  _id: string;
-  name: string;
-}
+
 
 export interface IActionButton {
   name: string;
@@ -19,11 +16,7 @@ export interface IActionButton {
   variant?: "primary" | "secondary" | "danger"| "confirm"
 }
 
-export interface IFormSelect {
-  name: string;
-  labelName: string;
-  data: IFormSelectData[];
-}
+
 export interface IButton {
   name: string;
   onClick: () => void;
