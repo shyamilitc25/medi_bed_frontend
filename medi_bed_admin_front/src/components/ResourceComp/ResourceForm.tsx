@@ -7,6 +7,9 @@ import { IResource } from "../../interface/interface";
 import { createResource } from "../../services/resourceService";
 import { useState } from "react";
 import LoadingSpinner from "../Spinner";
+
+import { toast } from 'react-toastify';
+
 const AdminFormModal = ({
   isOpen,
   onClose,
@@ -32,10 +35,12 @@ const AdminFormModal = ({
       console.log("Form submitted", values);
       const response = await createResource(values);
       if (response.success) {
-        alert(response?.message);
+        toast.success(response?.message)
+        // alert(response?.message);
       }
       console.log({ response });
     } catch (err) {
+      toast.error("oopsss!!! couldn't create entry")
       console.log(err);
     }
     setLoading(false)
