@@ -3,9 +3,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormInput from "../FormFields/FormInput"; // Update path based on your file structure
 import Button from "../FormFields/ButtonComp";
-import FormSelect from "../FormFields/FormSelector";
-import { createBed } from "../../services/resourceService";
 import { IBed } from "../../interface/interface";
+import { createBed } from "../../services/bedServices";
 
 interface MyFormValues {
   name: string | number;
@@ -82,16 +81,7 @@ const AdminFormModal = ({
               value={values.bedType}
               onChange={handleChange}
             />
-            {/* <FormSelect
-              name="isOccupied"
-              labelName="Is Occupied"
-              data={[
-                { value: true, label: "Yes" },
-                { value: false, label: "No" }
-              ]}
-              value={values.isOccupied}
-              onChange={handleChange}
-            /> */}
+           
             <div className="flex justify-end space-x-4">
               <Button type="submit" variant="primary">
                 Submit
@@ -104,6 +94,7 @@ const AdminFormModal = ({
         )}
       </Formik>
     </Modal>
+    
   );
 };
 

@@ -13,8 +13,3 @@ export const getResources=async(page:number,limit:number)=>{
     });
     return response.data
 }
-// createBed
-export const createBed = async(bedData: any)=>{
-    const response=await axios.post(`${API_URL}/beds/add`,bedData);
-    return response.data
-}
