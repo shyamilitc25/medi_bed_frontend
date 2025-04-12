@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import sidebarRouteList from "../../routes/routeList";
-
+import { useServerHealth } from '../../hooks/usePolling'; 
+const URL=import.meta.env.VITE_API_URL; 
+const ServerHealthChecker = ({ url }: { url: string }) => { 
+const status = useServerHealth(url, 5000); 
+return <><div className="flex items-center "> <span className={`h-3 w-3 rounded-full ${status === 'online' ? 'bg-green-500' : 'bg-red-500'}`}></span></div> 
+</> 
+}; 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -12,7 +18,7 @@ const Header: React.FC = () => {
           Dashboard
         </Link>
         <div className="hidden md:flex space-x-4">
-        
+        <ServerHealthChecker url={`${URL}/health`}/>
         <h2 className="text-white">Admin</h2>
           <Link to="/logout" className="text-white">
             Logout
