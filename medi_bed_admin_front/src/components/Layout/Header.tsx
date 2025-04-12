@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         </Link>
         <div className="hidden md:flex space-x-4">
         
-        <h2 className="text-white">username</h2>
+        <h2 className="text-white">Admin</h2>
           <Link to="/logout" className="text-white">
             Logout
           </Link>

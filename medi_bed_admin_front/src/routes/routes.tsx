@@ -2,15 +2,17 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Lazy load your components
-const Dashboard = React.lazy(() => import('../pages/Dashboard')); // Assuming the Home component is in the "pages" directory
+const Dashboard = React.lazy(() => import('../pages/Dashboard')); 
+const ResourceComp = React.lazy(() => import('../pages/Resources'));
 
-function App() {
+function AppRoutes() {
   return (
     <Router>
       {/* Provide a fallback UI during the lazy loading */}
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/resources" element={<ResourceComp />} />
         
         </Routes>
       </Suspense>
@@ -18,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppRoutes;
