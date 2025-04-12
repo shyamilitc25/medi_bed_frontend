@@ -6,13 +6,23 @@ export const createResource=async(formData:IResource)=>{
     return response.data
 }
 export const getResources=async(page:number,limit:number)=>{
-    const response=await axios.post(`${API_URL}/resource`,{
+    const response=await axios.get(`${API_URL}/resource`,{
         params:{
             page,limit
         }
     });
     return response.data
 }
+
+export const updateResource = async(resourceData:IResource)=>{
+    const response=await axios.put(`${API_URL}/resource`,resourceData);
+    return response.data
+}
+export const deleteResource = async(id:string)=>{
+    const response = await axios.delete(`${API_URL}/resource/${id}`);
+    return response.data
+}
+
 // createBed
 export const createBed = async(bedData: any)=>{
     const response=await axios.post(`${API_URL}/beds/add`,bedData);
