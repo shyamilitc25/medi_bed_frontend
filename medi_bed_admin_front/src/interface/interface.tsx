@@ -39,6 +39,12 @@ export interface IFormSelect {
   labelName: string;
   data: IFormSelectData[];
 }
+export interface IBed {
+  bedNumber:string,
+  ward:string,
+  bedType:string,
+  
+}
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger"| "confirm" | "success"
 }

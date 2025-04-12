@@ -16,8 +16,6 @@ function AppRoutes() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/resources" element={<ResourceComp />} />
           <Route path="/beds" element={<BedComp />} />
-
-        
         </Routes>
       </Suspense>
     </Router>
