@@ -26,6 +26,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
+    
     <div className="flex justify-center items-center space-x-2 mt-4">
       {!loading?<>
       <button

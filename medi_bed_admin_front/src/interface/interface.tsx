@@ -46,6 +46,13 @@ export interface IBed {
   bedType:string,
 
 }
+export interface IUser {
+  _id?: string;
+  name:string,
+  age:string,
+  email:string,
+
+}
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger"| "confirm" | "success"
 }

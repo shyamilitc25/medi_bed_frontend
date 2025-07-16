@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Lazy load your components
 const Dashboard = React.lazy(() => import('../pages/Dashboard')); 
 const ResourceComp = React.lazy(() => import('../pages/Resources'));
-const BedComp = React.lazy(() => import('../pages/Beds'));
+
 
 
 function AppRoutes() {
@@ -15,7 +15,7 @@ function AppRoutes() {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/resources" element={<ResourceComp />} />
-          <Route path="/beds" element={<BedComp />} />
+         
         </Routes>
       </Suspense>
     </Router>

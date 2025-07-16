@@ -8,7 +8,7 @@ const Sidebar: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-200 ease-in-out md:relative md:translate-x-0 md:w-64`}
     >
-      <nav className="space-y-4">
+      <nav className="space-y-4" tabIndex={-1}>
         <Link to="/" className="block text-white">
           Home
         </Link>

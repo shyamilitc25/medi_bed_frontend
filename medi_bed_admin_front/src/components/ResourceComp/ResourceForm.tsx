@@ -9,9 +9,9 @@ import { useState } from "react";
 import LoadingSpinner from "../Spinner";
 
 import { toast } from "react-toastify";
-import FormSelect from "../FormFields/FormSelector";
 
-const AdminFormModal = ({
+
+const ResourceForm = ({
   isOpen,
   onClose,
   title,
@@ -138,4 +138,4 @@ const AdminFormModal = ({
   );
 };
 
-export default AdminFormModal;
+export default ResourceForm;
